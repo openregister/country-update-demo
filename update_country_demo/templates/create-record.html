@@ -1,0 +1,65 @@
+{% extends "govuk_template.html" %}
+{% block content %}
+
+<header>
+    <div class="row">
+        <div class="large-6 columns">
+            <h1>Create a new country</h1>
+        </div>
+    </div>
+</header>
+
+<main id="content">
+    <form method="post" action="/create-record">
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>country</label>
+                <input type="text" name="country" value="{{country}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>citizen-names</label>
+                <input type="text" name="citizen_names" value="{{citizen_names}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>end-date</label>
+                <input type="text" name="end_date" value="{{end_date}}"/>
+            </div>
+        </div>
+
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>name</label>
+                <input type="text" name="name" value="{{name}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>official-name</label>
+                <input type="text" name="official_name" value="{{official_name}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>start-date</label>
+                <input type="text" name="start_date" value="{{start_date}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <label>text</label>
+                <input type="text" name="text" value="{{text}}"/>
+            </div>
+        </div>
+        <div class="row section-row">
+            <div class="large-6 columns">
+                <input id="submit" type="submit" value="submit" class="button">
+            </div>
+        </div>
+    </form>
+</main>
+{% endblock %}
+
