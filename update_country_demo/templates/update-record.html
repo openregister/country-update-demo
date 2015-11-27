@@ -4,17 +4,17 @@
 <header>
     <div class="row">
         <div class="large-6 columns">
-            <h1>Create a new country</h1>
+            <h1>Update a country Record</h1>
         </div>
     </div>
 </header>
 
 <main id="content">
-    <form method="post" action="/create-record">
+    <form method="post" action="/update-record/{{country}}">
         <div class="row section-row">
             <div class="large-6 columns">
                 <label>country</label>
-                <input type="text" name="country" value="{{country}}"/>
+                <input type="text" name="country" value="{{country}}" readonly/>
             </div>
         </div>
         <div class="row section-row">
@@ -57,7 +57,6 @@
         <div class="row section-row">
             <div class="large-6 columns">
                 <input id="submit" type="submit" value="submit" class="button">
-
             </div>
         </div>
     </form>
