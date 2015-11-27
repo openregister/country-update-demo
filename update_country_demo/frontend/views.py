@@ -54,7 +54,6 @@ def create_record():
 
 @frontend.route('/update-record/<record_id>')
 def render_update_record_form(record_id):
-
     resp = requests.get(current_app.config['READ_API_URL'] + "/country/" + record_id + ".json")
 
     record_json = json.loads(resp.content)['entry']
@@ -62,12 +61,12 @@ def render_update_record_form(record_id):
     return render_template(
         'update-record.html',
         country=record_json['country'],
-        citizen_names=record_json['citizen-names'],
-        end_date=record_json['end-date'],
-        name=record_json['name'],
-        official_name=record_json['official-name'],
-        start_date=record_json['start-date'],
-        text=record_json['text']
+        citizen_names=record_json.get('citizen-names', ''),
+        end_date=record_json.get('end-date', ''),
+        name=record_json.get('name', ''),
+        official_name=record_json.get('official-name', ''),
+        start_date=record_json.get('start-date', ''),
+        text=record_json.get('text', '')
     )
 
 
