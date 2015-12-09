@@ -9,6 +9,10 @@ class Config(object):
     MINT_API_PASSWORD=os.environ.get('MINT_API_PASSWORD', 'some_password')
     READ_API_URL=os.environ.get('READ_API_URL', 'http://country.openregister.dev:8080')
 
+    BASIC_AUTH_USERNAME=os.environ.get('BASIC_AUTH_USERNAME', 'openregister')
+    BASIC_AUTH_PASSWORD=os.environ.get('BASIC_AUTH_PASSWORD', 'OpenRegister')
+    BASIC_AUTH_REALM=os.environ.get('BASIC_AUTH_REALM', 'openregister')
+
 class DevelopmentConfig(Config):
     DEBUG = True
     WTF_CSRF_ENABLED = False

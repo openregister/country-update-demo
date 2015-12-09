@@ -4,24 +4,34 @@ from flask import (
     render_template,
     request,
     redirect,
-    json
+    json,
+    Flask
 )
+
+from flask.ext.basicauth import BasicAuth
+
 import requests
+
+app = Flask(__name__)
+
+basic_auth = BasicAuth(app)
 
 frontend = Blueprint('frontend', __name__, template_folder='templates')
 
-
 @frontend.route('/')
+@basic_auth.required
 def index():
     return render_template('index.html')
 
 
 @frontend.route('/create-record')
+@basic_auth.required
 def render_create_record_form():
     return render_template('create-record.html')
 
 
 @frontend.route('/create-record', methods=['POST'])
+@basic_auth.required
 def create_record():
     country = request.form['country'].upper()
     citizen_names = request.form['citizen_names']
@@ -53,6 +63,7 @@ def create_record():
 
 
 @frontend.route('/update-record/<record_id>')
+@basic_auth.required
 def render_update_record_form(record_id):
     resp = requests.get(current_app.config['READ_API_URL'] + "/country/" + record_id + ".json")
 
@@ -71,6 +82,7 @@ def render_update_record_form(record_id):
 
 
 @frontend.route('/update-record/<record_id>', methods=['POST'])
+@basic_auth.required
 def update_record(record_id):
     return create_record_in_register(
         redirect("/update-record/" + record_id),
