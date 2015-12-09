@@ -97,7 +97,8 @@ def create_record_in_register(error_response, country, citizen_names, end_date, 
         }
     )
 
-    resp = requests.post(current_app.config['MINT_SERVICE_URL'] + "/load", json_line)
+    resp = requests.post(current_app.config['MINT_SERVICE_URL'] + "/load", auth=('openregister', current_app.config['MINT_API_PASSWORD']),
+                         data=json_line)
 
     if (resp.status_code == 200):
         return render_template('success.html')
