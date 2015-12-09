@@ -8,4 +8,4 @@ RUN pip install -r requirements/dev.txt
 
 COPY . /usr/src/app
 
-CMD ["gunicorn", "--config=gunicorn.py", "update_country_demo:app"]
+CMD ["gunicorn", "--config=gunicorn.py", "country_update_demo:app"]

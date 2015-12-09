@@ -3,7 +3,7 @@
 import os
 from flask.ext.script import Shell, Server, Manager
 
-from update_country_demo import app
+from country_update_demo import app
 
 app.debug = True
 port = os.environ.get('PORT', 8000)

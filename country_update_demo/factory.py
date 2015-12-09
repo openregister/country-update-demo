@@ -2,7 +2,7 @@
 '''The app module, containing the app factory function.'''
 from flask import Flask, render_template
 
-# from update_country_demo.extensions import (
+# from country_update_demo.extensions import (
 #     #add as needed
 # )
 
@@ -31,7 +31,7 @@ def register_errorhandlers(app):
     return None
 
 def register_blueprints(app):
-    from update_country_demo.frontend.views import frontend
+    from country_update_demo.frontend.views import frontend
     app.register_blueprint(frontend)
 
 # def register_extensions(app):
