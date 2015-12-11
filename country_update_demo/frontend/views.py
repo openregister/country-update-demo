@@ -22,17 +22,13 @@ frontend = Blueprint('frontend', __name__, template_folder='templates')
 
 headers = {'Content-type': 'application/json'}
 
-##TODO: reformat this method
 @frontend.route('/countries.json')
 def countries():
     url = "%s/records.json?page-size=200" % current_app.config['READ_API_URL']
     resp = requests.get(url, headers=headers)
     countries = []
-    current_countries_code = []
     for e in resp.json():
-        if e['entry']['country'] not in current_countries_code :
-            current_countries_code.append(e['entry']['country'])
-            countries.append(e['entry'])
+        countries.append(e['entry'])
     sorted_countries = sorted(countries, key=lambda country: country['name'])
     return jsonify({'entries': sorted_countries})
 
