@@ -55,8 +55,13 @@ def index_form_selection_submit():
     form_action = request.form.get('radio-record-group')
 
     if form_action == 'Update' :
-        ##TODO: check that a country is selected
-        return redirect('/update-record/' + request.form.get('country'))
+        try:
+            country = request.form.get('country')
+            if country == '' :
+                raise Exception('select a country')
+            return redirect('/update-record/' + request.form.get('country'))
+        except Exception as e:
+            return render_template("index.html")
 
     return redirect('/create-record')
 
