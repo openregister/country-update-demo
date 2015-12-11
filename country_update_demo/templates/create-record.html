@@ -1,55 +1,58 @@
 {% extends "govuk_template.html" %}
 {% block content %}
 
-<header>
-    <div class="row">
-        <div class="large-6 columns">
-            <h1 class="heading-medium" align="middle">Create a new country</h1>
-        </div>
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <h1 class="heading-large">
+            <span class="heading-secondary">Country Register</span>
+            Add a new record
+        </h1>
+
+
+        <form method="post" action="/create-record">
+            <div class="form-group">
+                <label class="form-label-bold" for="country">country</label>
+                <span class="form-hint">Enter the country code</span>
+                <input class="form-control" id="country" name="country" type="text" value="{{country}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="name">name</label>
+                <input class="form-control" id="name" name="name" type="text" value="{{name}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="official_name">official-name</label>
+                <input class="form-control" id="official_name" name="official_name" type="text"
+                       value="{{official_name}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="citizen_names">citizen-names</label>
+                <input class="form-control" id="citizen_names" name="citizen_names" type="text"
+                       value="{{citizen_names}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="start_date">start-date</label>
+                <input class="form-control" id="start_date" name="start_date" type="text" value="{{start_date}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="end_date">end-date</label>
+                <input class="form-control" id="end_date" name="end_date" type="text" value="{{end_date}}">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label-bold" for="text">text</label>
+                <input class="form-control" id="text" name="text" type="text" value="{{text}}">
+            </div>
+
+            <div class="form-group">
+                <input name="submit" type="submit" value="Add this record" class="button">
+            </div>
+        </form>
     </div>
-</header>
-
-<main id="content">
-    <form method="post" action="/create-record">
-        <div class="form-group">
-            <label class="form-label" for="country">country</label>
-            <input class="form-control" id="country" name="country" type="text" value="{{country}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="citizen_names">citizen-names</label>
-            <input class="form-control" id="citizen_names" name="citizen_names" type="text" value="{{citizen_names}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="end_date">end-date</label>
-            <input class="form-control" id="end_date" name="end_date" type="text" value="{{end_date}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="name">name</label>
-            <input class="form-control" id="name" name="name" type="text" value="{{name}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="official_name">official-name</label>
-            <input class="form-control" id="official_name" name="official_name" type="text" value="{{official_name}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="start_date">start-date</label>
-            <input class="form-control" id="start_date" name="start_date" type="text" value="{{start_date}}">
-        </div>
-
-        <div class="form-group">
-            <label class="form-label" for="text">text</label>
-            <input class="form-control" id="text" name="text" type="text" value="{{text}}">
-        </div>
-
-        <div class="form-group">
-            <input name="submit" type="submit" value="Save" class="button">
-        </div>
-    </form>
-</main>
+</div>
 {% endblock %}
 
