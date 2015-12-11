@@ -1337,6 +1337,41 @@ ol {
   margin-right: 5px;
 }
 
+select {
+  font-family: "nta", Arial, sans-serif;
+  font-size: 19px;
+  line-height: 1.31579;
+  text-transform: none;
+  margin: 0 0.6em 0 0;
+  max-width: 75%;
+  overflow: hidden;
+  border: 1px solid #aaa; }
+
+.ui-autocomplete {
+  padding: 0;
+  list-style: none;
+  background-color: #fff;
+  width: 218px;
+  border: 1px solid #bfc1c3;
+  max-height: 350px;
+  overflow-x: hidden; }
+
+.ui-autocomplete .ui-menu-item {
+  border-top: 1px solid #bfc1c3;
+  display: block;
+  padding: 4px 6px;
+  color: #353D44;
+  cursor: pointer; }
+
+.ui-autocomplete .ui-menu-item:first-child {
+  border-top: none; }
+
+.ui-autocomplete .ui-menu-item.ui-state-focus {
+  background-color: #D5E5F4;
+  color: #161A1C; }
+
+.ui-helper-hidden-accessible {
+  display: none; }
 
 .success-box {
     background-color: #28A197 ;
