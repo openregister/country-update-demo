@@ -5,16 +5,10 @@
     <div class="column-two-thirds">
         <h1 class="heading-large">
             <span class="heading-secondary">Country Register</span>
-            Update this record
+            Update record: {{country}}
         </h1>
 
-
         <form method="post" action="/update-record/{{country}}">
-            <div class="form-group">
-                <label class="form-label-bold" for="country">country</label>
-                <input class="form-control" id="country" name="country" type="text" value="{{country}}" readonly>
-            </div>
-
             <div class="form-group">
                 <label class="form-label-bold" for="name">name</label>
                 <input class="form-control" id="name" name="name" type="text" value="{{name}}">

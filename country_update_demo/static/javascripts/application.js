@@ -119,6 +119,9 @@ $(document).ready(function() {
   var $blockLabels = $(".block-label input[type='radio'], .block-label input[type='checkbox']");
   new GOVUK.SelectionButtons($blockLabels);
 
+  GOVUK.validation.init();
+  $('#add-update-record').validate();
+
   // Show and hide toggled content
   // Where .block-label uses the data-target attribute
   var toggleContent = new ShowHideContent();
