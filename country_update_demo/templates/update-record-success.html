@@ -1,0 +1,13 @@
+{% extends "govuk_template.html" %}
+{% block content %}
+<div class="success-box">
+    <h1 class="heading-large">This record has been successfully updated</h1>
+</div>
+<div class="grid-row">
+    <div class="column-two-thirds">
+        <p class="lede">It may take a couple of minutes to update the register.</p>
+
+        <p><a href="/country/{{country}}">View this record in the country register</a></p>
+    </div>
+</div>
+{% endblock %}

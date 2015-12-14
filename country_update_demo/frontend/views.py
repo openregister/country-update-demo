@@ -5,6 +5,7 @@ from flask import (
     request,
     redirect,
     json,
+    jsonify,
     Flask
 )
 
@@ -18,10 +19,47 @@ basic_auth = BasicAuth(app)
 
 frontend = Blueprint('frontend', __name__, template_folder='templates')
 
+
+headers = {'Content-type': 'application/json'}
+
+@frontend.route('/countries.json')
+def countries():
+    url = "%s/records.json?page-size=200" % current_app.config['READ_API_URL']
+    resp = requests.get(url, headers=headers)
+    countries = []
+    for e in resp.json():
+        countries.append(e['entry'])
+    sorted_countries = sorted(countries, key=lambda country: country['name'])
+    return jsonify({'entries': sorted_countries})
+
+
+@frontend.route('/country/<country_code>')
+def country_record_in_register(country_code):
+    url = "%s/country/%s" % (current_app.config['READ_API_URL'], country_code)
+    return redirect(url)
+
+
 @frontend.route('/')
 @basic_auth.required
-def index():
+def index_page():
     return render_template('index.html')
+
+@frontend.route('/', methods=['POST'])
+@basic_auth.required
+def index_form_selection_submit():
+
+    form_action = request.form.get('radio-record-group')
+
+    if form_action == 'Update' :
+        try:
+            country = request.form.get('country')
+            if country == '' :
+                raise Exception('select a country')
+            return redirect('/update-record/' + request.form.get('country'))
+        except Exception as e:
+            return render_template("index.html")
+
+    return redirect('/create-record')
 
 
 @frontend.route('/create-record')
@@ -52,6 +90,7 @@ def create_record():
             start_date=start_date,
             text=text
         ),
+        'create-record-success.html',
         country,
         citizen_names,
         end_date,
@@ -65,7 +104,8 @@ def create_record():
 @frontend.route('/update-record/<record_id>')
 @basic_auth.required
 def render_update_record_form(record_id):
-    resp = requests.get(current_app.config['READ_API_URL'] + "/country/" + record_id + ".json")
+    url = "%s/country/%s.json" % (current_app.config['READ_API_URL'], record_id)
+    resp = requests.get(url)
 
     record_json = json.loads(resp.content)['entry']
 
@@ -86,6 +126,7 @@ def render_update_record_form(record_id):
 def update_record(record_id):
     return create_record_in_register(
         redirect("/update-record/" + record_id),
+        'update-record-success.html',
         record_id,
         request.form['citizen_names'],
         request.form['end_date'],
@@ -96,7 +137,7 @@ def update_record(record_id):
     )
 
 
-def create_record_in_register(error_response, country, citizen_names, end_date, name, official_name, start_date, text):
+def create_record_in_register(error_response, success_page, country, citizen_names, end_date, name, official_name, start_date, text):
     json_line = json.dumps(
         {
             'country': country,
@@ -109,10 +150,10 @@ def create_record_in_register(error_response, country, citizen_names, end_date, 
         }
     )
 
-    resp = requests.post(current_app.config['MINT_SERVICE_URL'] + "/load", auth=('openregister', current_app.config['MINT_API_PASSWORD']),
-                         data=json_line)
+    loadUrl = "%s/load" % current_app.config['MINT_SERVICE_URL']
+    resp = requests.post(loadUrl, auth=('openregister', current_app.config['MINT_API_PASSWORD']), data=json_line)
 
     if (resp.status_code == 200):
-        return render_template('success.html')
+        return render_template(success_page, country = country)
 
     return error_response

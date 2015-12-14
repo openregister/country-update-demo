@@ -1,9 +1,68 @@
 {% extends "govuk_template.html" %}
+
+
+{% block head %}
+<script src="{{ asset_path }}javascripts/selection-buttons.js" type="text/javascript"></script>
+<script src="{{ asset_path }}javascripts/application.js" type="text/javascript"></script>
+<script src="{{asset_path}}javascripts/country-picker.js"></script>
+
+{% raw %}
+
+<script id="country-template" type="text/x-jsrender">
+          <option value="{{:country}}" data-alternative-spellings="{{:country}}">{{:name}}</option>
+</script>
+
+{% endraw %}
+
+{% endblock %}
+
+
 {% block content %}
-    <div class="grid-row">
-      <div class="column-two-thirds">
-        <h1 class="heading-large">Create/Update country record</h1>
-      </div>
+<h1 class="heading-large">
+    <span class="heading-secondary">Country Register</span>
+    Add or update a record
+</h1>
+
+<form action="/" method="post">
+    <div class="form-group">
+        <fieldset>
+
+            <legend class="visuallyhidden">What do you want to do?</legend>
+
+            <label class="block-label" for="radio-add-record">
+                <input id="radio-add-record" type="radio" name="radio-record-group" value="Add">
+                Add a new record
+            </label>
+
+            <label class="block-label" for="radio-update-record" data-target="countries">
+                <input id="radio-update-record" type="radio" name="radio-record-group" value="Update"
+                       aria-controls="countries" aria-expanded="false">
+                Update a record
+
+            </label>
+
+            <div class="panel-indent js-hidden" id="countries">
+                <div class="widget">
+                    <div class="row">
+                        <div class="columns-two-thirds">
+                            <div class="form-group">
+                                <label class="form-label-bold" for="country-selector">Pick a country</label>
+                                <select name="country" id="country-selector" autofocus="autofocus" autocorrect="off"
+                                        autocomplete="off" class="auto-suggest form-control">
+                                    <option value="" selected="selected">Select Country</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </fieldset>
+
+        <p><input type="submit" class="button" value="Continue"/></p>
     </div>
+</form>
+
+
 {% endblock %}
 
