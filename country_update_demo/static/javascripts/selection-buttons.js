@@ -1,3 +1,4 @@
+//Copied from http://govuk-prototype-kit.herokuapp.com/public/javascripts/govuk/selection-buttons.js
 (function () {
   "use strict";
   var root = this,

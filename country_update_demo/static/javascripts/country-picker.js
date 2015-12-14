@@ -1,3 +1,4 @@
+//Copied from widgets demo https://raw.githubusercontent.com/openregister/widgets-demo/master/widgets/static/javascripts/country-picker.js
 var initAutoComplete = function() {
     $('.auto-suggest').selectToAutocomplete();
 };

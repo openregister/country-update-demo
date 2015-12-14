@@ -1,3 +1,4 @@
+//Copied from http://govuk-prototype-kit.herokuapp.com/public/javascripts/application.js
 function ShowHideContent() {
   var self = this;
 
