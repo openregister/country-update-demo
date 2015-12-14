@@ -6,7 +6,15 @@
 <script src="{{ asset_path }}javascripts/validation.js" type="text/javascript"></script>
 <script src="{{ asset_path }}javascripts/application.js" type="text/javascript"></script>
 <script src="{{asset_path}}javascripts/country-picker.js"></script>
-
+<script type="text/javascript">
+    $(document).ready(function() {
+        var $submit = $('input[type="submit"]');
+        $submit.prop('disabled', true);
+        $('input[type="radio"]').on('input change', function() {
+            $submit.prop('disabled', $(this).val() != 'Add' && $(this).val() != 'Update');
+        });
+    });
+</script>
 {% raw %}
 
 <script id="country-template" type="text/x-jsrender">

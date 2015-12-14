@@ -58,8 +58,10 @@ def index_form_selection_submit():
             return redirect('/update-record/' + request.form.get('country'))
         except Exception as e:
             return render_template("index.html")
-
-    return redirect('/create-record')
+    elif form_action == 'Add' :
+        return redirect('/create-record')
+    else :
+        return redirect('/')
 
 
 @frontend.route('/create-record')
